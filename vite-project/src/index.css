@@ -83,6 +83,16 @@ button:focus-visible {
   background: #09f;
 }
 
+.board {
+  width: fit-content;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.board h1 {
+  color: #eee;
+  margin-bottom: 16px;
+}
 .board .game {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

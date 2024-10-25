@@ -12,7 +12,7 @@ function App() {
   const board = Array(8).fill(null);
 
   const resetGame = () => {}
-  const updateBoard = () => {}
+  const updateBoard = (index) => {return index}
 
   const turn = 'A';
   const winner = null;

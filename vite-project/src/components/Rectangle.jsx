@@ -3,7 +3,7 @@ export const Rectangle = ({ children, isSelected, updateBoard, index }) => {
     const className = `rectangle ${isSelected ? 'is-selected' : ''}`
   
     const handleClick = () => {
-      updateBoard(index)
+      //updateBoard(index)
     }
   
     return (
