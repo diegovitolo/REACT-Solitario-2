@@ -90,12 +90,26 @@ button:focus-visible {
 }
 
 .board h1 {
-  color: #eee;
+  color: #3f519a;
   margin-bottom: 16px;
 }
+
+.board button {
+  padding: 8px 12px;
+  margin: 25px;
+  background: transparent;
+  border: 2px solid #3f519a;
+  color: #3f519a;
+  width: 100px;
+  border-radius: 5px;
+  transition: 0.2s;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .board .game {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
 }
 
