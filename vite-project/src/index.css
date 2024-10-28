@@ -121,3 +121,9 @@ button:focus-visible {
   position: relative;
   border-radius: 10px;
 }
+
+.board .resultado {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}

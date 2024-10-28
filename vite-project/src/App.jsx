@@ -20,7 +20,7 @@ function inicializarBoard(){
 
 function App() {
 
-  //const [puntaje, setPuntaje] = useState({'J1': 0, 'J2': 0})
+  const [puntaje, setPuntaje] = useState([0, 0])
   //El jugador debe elegir dos cartas
   //si eleccion vale 1 estoy en primer eleccion
   //si eleccion vale 2 estoy en segunda y ultima eleccion, luego debe volver a 1
@@ -77,6 +77,20 @@ function App() {
   return (
     <main className='board'>
       <h1>Solitario</h1>
+      <section className='resultado'>
+        <Rectangle>Turno</Rectangle>
+        <Rectangle>Puntaje</Rectangle>
+          {
+            puntaje.map((valor, index) => {
+              return(
+                <Rectangle isSelected={turn === 'J1'}
+                  key={index}>
+                  {valor['J1']}
+                </Rectangle>
+              )
+            })
+          }       
+      </section>
       <button onClick={resetGame}>Reset del juego</button>
       <section className='game'>
         {
