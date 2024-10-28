@@ -20,19 +20,22 @@ function inicializarBoard(){
 
 function App() {
 
-  const [puntaje, setPuntaje] = useState({'J1': 0, 'J2': 0})
+  //const [puntaje, setPuntaje] = useState({'J1': 0, 'J2': 0})
   //El jugador debe elegir dos cartas
   //si eleccion vale 1 estoy en primer eleccion
   //si eleccion vale 2 estoy en segunda y ultima eleccion, luego debe volver a 1
   const [eleccion, setEleccion] = useState([1, null]);
-  const [board, setBoard] = useState(() => {return inicializarBoard();});
+  const [board, setBoard] = useState(() => {
+    console.log("inicializando")
+    return inicializarBoard();
+  });
 
-  const [boardAMostrar, setBoardAMostrar] = useState(() => {return Array(board.length).fill(null)})
+  const [boardAMostrar, setBoardAMostrar] = useState(() => {return Array(board.length).fill(null)});
 
   const resetGame = () => {
     setBoard(inicializarBoard());
     setBoardAMostrar(Array(board.length).fill(null));
-  }
+  };
   
   const updateBoard = (index) => {
     //si alguien esta queriendo apretar mas de dos cartas (al hacerlo rapido) no debemos permitirlo
@@ -103,7 +106,7 @@ function App() {
       <WinnerModal resetGame={resetGame} winner={winner} />
       
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
