@@ -3,6 +3,7 @@ import './App.css'
 
 import { Rectangle } from './components/Rectangle.jsx'
 import { WinnerModal } from './components/WinnerModal.jsx'
+import { TableroResultado } from './components/TableroResultado.jsx'
 
 function shuffle(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -20,7 +21,7 @@ function inicializarBoard(){
 
 function App() {
 
-  const [puntaje, setPuntaje] = useState([0, 0])
+  const [puntaje, setPuntaje] = useState({'J1': 0,'J2': 0})
   //El jugador debe elegir dos cartas
   //si eleccion vale 1 estoy en primer eleccion
   //si eleccion vale 2 estoy en segunda y ultima eleccion, luego debe volver a 1
@@ -33,6 +34,7 @@ function App() {
   const [boardAMostrar, setBoardAMostrar] = useState(() => {return Array(board.length).fill(null)});
 
   const resetGame = () => {
+    setTurn('J1');
     setBoard(inicializarBoard());
     setBoardAMostrar(Array(board.length).fill(null));
   };
@@ -44,6 +46,7 @@ function App() {
     //si aprietan dos veces la misma carta no hago nada
     if(eleccion[1]===index){return}
 
+    
     const newBoardAMostrar = [...boardAMostrar];
     newBoardAMostrar[index] = board[index];
     setBoardAMostrar(newBoardAMostrar); 
@@ -58,6 +61,8 @@ function App() {
       //alert( "carta 1: " + board[eleccion[1]] + " carta 2: " + board[index])
       if (board[eleccion[1]]===board[index]){
         setEleccion([1, null]);
+        if (turn === 'J1'){setPuntaje({'J1': puntaje['J1']+1, 'J2': puntaje['J2']})}
+        if (turn === 'J2'){setPuntaje({'J1': puntaje['J1'], 'J2': puntaje['J2']+1})}
       } else {
         //si no hubo coincidenicas entre carta 1 y carta 2 las vuelvo a poner boca abajo
         const newNewBoardAMostrar = [...newBoardAMostrar];
@@ -68,30 +73,18 @@ function App() {
           await setEleccion([1, null]);
         }, 1000);
       }
+      if (turn === 'J1'){setTurn('J2')}
+      else {setTurn('J1')}
     }
   }
 
-  const turn = 'J1';
+  const [turn, setTurn] = useState(() => {return 'J1'})
   const winner = null;
 
   return (
     <main className='board'>
       <h1>Solitario</h1>
-      <section className='resultado'>
-        <Rectangle>Turno</Rectangle>
-        <Rectangle>Puntaje</Rectangle>
-          {
-            puntaje.map((valor, index) => {
-              return(
-                <Rectangle isSelected={turn === 'J1'}
-                  key={index}>
-                  {valor['J1']}
-                </Rectangle>
-              )
-            })
-          }       
-      </section>
-      <button onClick={resetGame}>Reset del juego</button>
+      <TableroResultado puntaje={puntaje} turn={turn}></TableroResultado>
       <section className='game'>
         {
           boardAMostrar.map((valor, index) => {
@@ -107,18 +100,8 @@ function App() {
           })
         }
       </section>
-     
-      <section className='turn'>
-        <Rectangle isSelected={turn === 'J1'}>
-          {'J1'}
-        </Rectangle>
-        <Rectangle isSelected={turn === 'J2'}>
-          {'J2'}
-        </Rectangle>
-      </section>
-      
+      <button onClick={resetGame}>Reset del juego</button>
       <WinnerModal resetGame={resetGame} winner={winner} />
-      
     </main>
   );
 }
