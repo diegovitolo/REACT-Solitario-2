@@ -1,6 +1,8 @@
-export const Rectangle = ({ children, isSelected, updateBoard, index }) => {
+import './Rectangle.css';
+
+export const Rectangle = ({ children, isSelected, updateBoard, index, color }) => {
     //dependiendo de si esta selecciona o no dependera de la clase is-selected o no
-    const className = `rectangle ${isSelected ? 'is-selected' : ''}`
+    const className = `rectangle ${color ?? ''} ${isSelected ? 'is-selected' : ''}`
   
     const handleClick = () => {
       updateBoard(index)

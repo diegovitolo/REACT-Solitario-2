@@ -1,5 +1,3 @@
-import { Rectangle } from './Rectangle.jsx'
-
 export function WinnerModal ({ winner, resetGame }) {
   if (winner === null) return null
 
@@ -11,7 +9,7 @@ export function WinnerModal ({ winner, resetGame }) {
         <h2>{winnerText}</h2>
 
         <header className='win'>
-          {winner && <Rectangle>{winner}</Rectangle>}
+          {winner}
         </header>
 
         <footer>

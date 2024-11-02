@@ -1,0 +1,24 @@
+.rectangle {
+    width: 100px;
+    height: 150px;
+    border: 2px solid #eee;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 48px;
+  }
+  
+  .rectangle.is-selected {
+    color: #fff;
+    background: #09f;
+  }
+
+  .rectangle.azul {
+    color: black;
+    background: rgba(0, 153, 255, 0.387);
+  }
+  .rectangle.rojo {
+    color: #fff;
+    background: rgba(255, 0, 0, 0.342);
+  }
